@@ -3,6 +3,7 @@
     "name": "MyWall",
     "slug": "MyWall",
     "version": "1.0.0",
+    "jsEngine": "hermes",
     "assetBundlePatterns": [
       "**/*"
     ]

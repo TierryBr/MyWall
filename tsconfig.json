@@ -1,0 +1,45 @@
+{
+  "extends": "expo/tsconfig.base",
+  "files": [
+    "metro.config.ts",
+  ],
+  "compilerOptions": {
+    "jsx": "react",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    "paths": {
+      "@screens/*": [
+        "./src/screens/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@routes/*": [
+        "./src/routes/*"
+      ],
+      "@types/*": [
+        "./src/@types/*"
+      ],
+      "@reducers/*": [
+        "./src/reducers/*"
+      ],
+      "@store/*": [
+        "./src/reducers/*"
+      ],
+      "@styles/*": [
+        "./src/styles/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@i18n/*": [
+        "./src/i18n/*"
+      ],
+    }
+  }
+}
