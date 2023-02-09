@@ -16,13 +16,22 @@
     "react": "18.1.0",
     "react-native": "0.70.5",
     "styled-components": "^5.3.6",
-    "typescript": "^4.6.3"
+    "typescript": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@types/react": "^18.0.27",
     "@types/react-native": "^0.71.2",
-    "@types/styled-components-react-native": "^5.2.1"
+    "@types/styled-components-react-native": "^5.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-standard-with-typescript": "^34.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.32.2",
+    "prettier": "^2.8.4"
   },
   "private": true
 }
