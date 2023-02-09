@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
 import { createRows } from '@utils';
+import { CardImage } from '@components/CardImage';
 
 import * as S from './styles';
 
@@ -40,27 +41,11 @@ export function Home() {
     },
   ];
 
-  const RenderItem = ({ item }) => {
-    if (item.empty) {
-      return <S.CardImage empty={item.empty} />;
-    }
-
-    return (
-      <S.CardImage activeOpacity={0.8} onPress={() => {}}>
-        <S.Image
-          source={{
-            uri: `${item.imagem}`,
-          }}
-        />
-      </S.CardImage>
-    );
-  };
-
   return (
     <S.Container>
       <FlatList
         data={createRows(DATA, columns)}
-        renderItem={({ item }) => <RenderItem item={item} />}
+        renderItem={({ item }) => <CardImage item={item} />}
         keyExtractor={item => item.id}
         numColumns={columns}
         showsVerticalScrollIndicator={false}
