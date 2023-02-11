@@ -10,7 +10,7 @@ export const themeLight: DefaultTheme = {
     GRAY800: '#FAFAFA',
     GRAY900: '#FAFAFA',
 
-    OVERLAY: 'rgba(0, 0, 0, 0.5)',
+    OVERLAY: 'rgba(189, 195, 199, 0.9)',
   },
 
   FONT_FAMILY: {

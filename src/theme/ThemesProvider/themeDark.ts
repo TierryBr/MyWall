@@ -11,7 +11,8 @@ export const themeDark: DefaultTheme = {
     GRAY900: '#242423',
     
 
-    OVERLAY: 'rgba(0, 0, 0, 0.5)',
+    OVERLAY: 'rgba(189, 195, 199, 0.2)',
+
   },
 
   FONT_FAMILY: {

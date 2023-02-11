@@ -39,6 +39,7 @@ export function Settings() {
           description={SelectedTheme === 'themeDark' ? 'Escuro' : 'Claro'}
           titleStyle={{ color: theme.COLORS.DARK }}
           descriptionStyle={{ color: theme.COLORS.GRAY500 }}
+          rippleColor={theme.COLORS.OVERLAY}
           onPress={showModal}
           left={() => (
             <Icon
@@ -53,6 +54,7 @@ export function Settings() {
           description="Português"
           titleStyle={{ color: theme.COLORS.DARK }}
           descriptionStyle={{ color: theme.COLORS.GRAY500 }}
+          rippleColor={theme.COLORS.OVERLAY}
           onPress={() => {}}
           left={() => (
             <Icon name="language-outline" color={theme.COLORS.DARK} size={20} />
@@ -67,6 +69,7 @@ export function Settings() {
           description="1.0.0"
           titleStyle={{ color: theme.COLORS.DARK }}
           descriptionStyle={{ color: theme.COLORS.GRAY500 }}
+          rippleColor={theme.COLORS.OVERLAY}
           left={() => (
             <Icon
               name="code-slash-outline"
@@ -80,6 +83,7 @@ export function Settings() {
           description="Se gostou do MyWall avalie ele na PlayStore"
           titleStyle={{ color: theme.COLORS.DARK }}
           descriptionStyle={{ color: theme.COLORS.GRAY500 }}
+          rippleColor={theme.COLORS.OVERLAY}
           onPress={() => {}}
           left={() => (
             <Icon name="star-outline" color={theme.COLORS.DARK} size={20} />
@@ -88,6 +92,7 @@ export function Settings() {
         <List.Item
           title="Termos de uso"
           titleStyle={{ color: theme.COLORS.DARK }}
+          rippleColor={theme.COLORS.OVERLAY}
           onPress={() => {}}
           left={() => (
             <Icon
@@ -100,6 +105,7 @@ export function Settings() {
         <List.Item
           title="Política de privacidade"
           titleStyle={{ color: theme.COLORS.DARK }}
+          rippleColor={theme.COLORS.OVERLAY}
           onPress={() => {}}
           left={() => (
             <Icon

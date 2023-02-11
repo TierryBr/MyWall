@@ -18,7 +18,7 @@ export const Header = styled.View`
   align-items: center;
   justify-content: space-between;
   padding: 15px;
-  margin-top: 40px;
+  margin-top: 30px;
 `;
 
 export const Image = styled.Image`
