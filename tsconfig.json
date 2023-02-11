@@ -8,7 +8,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
       "@screens/*": [
         "./src/screens/*"
@@ -41,5 +41,8 @@
         "./src/i18n/*"
       ],
     }
-  }
+  },
+  "include": [
+    "src"
+  ]
 }

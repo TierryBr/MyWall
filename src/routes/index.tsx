@@ -5,19 +5,24 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { Home } from '@screens/Home';
 import { Settings } from '@screens/Settings';
 import { Favorites } from '@screens/Favorites';
+import StackRoute from './Stack';
 
 const Tab = createBottomTabNavigator();
 
 export function Routes() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarShowLabel: false,
+          tabBarActiveTintColor: '#000',
+        }}
+      >
         <Tab.Screen
-          name="Home"
-          component={Home}
+          name="Images"
+          component={StackRoute}
           options={{
-            headerShown: false,
-            tabBarShowLabel: false,
             tabBarIcon: ({ color, size }) => (
               <Icon name="images-outline" color={color} size={size} />
             ),
@@ -27,8 +32,6 @@ export function Routes() {
           name="Favorites"
           component={Favorites}
           options={{
-            headerShown: false,
-            tabBarShowLabel: false,
             tabBarIcon: ({ color, size }) => (
               <Icon name="heart-outline" color={color} size={size} />
             ),
@@ -38,8 +41,6 @@ export function Routes() {
           name="Settings"
           component={Settings}
           options={{
-            headerShown: false,
-            tabBarShowLabel: false,
             tabBarIcon: ({ color, size }) => (
               <Icon name="settings-outline" color={color} size={size} />
             ),

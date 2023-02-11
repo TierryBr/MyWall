@@ -6,7 +6,9 @@
     "extends": [
         "plugin:react/recommended",
         "standard-with-typescript",
-        "prettier"
+        "@typescript-eslint",
+        "prettier",
+        "import"
     ],
     "overrides": [
     ],

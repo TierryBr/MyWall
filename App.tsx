@@ -6,7 +6,7 @@ import {
   Nunito_400Regular,
   Nunito_700Bold,
 } from '@expo-google-fonts/nunito';
-import AppLoading from 'expo-app-loading';
+import * as SplashScreen from 'expo-splash-screen';
 
 export default function App() {
   const [loadedFonts] = useFonts({
@@ -16,7 +16,7 @@ export default function App() {
   });
 
   if (!loadedFonts) {
-    return <AppLoading />;
+    SplashScreen.hideAsync();
   }
   return <Routes />;
 }

@@ -45,7 +45,7 @@ export function Home() {
     <S.Container>
       <FlatList
         data={createRows(DATA, columns)}
-        renderItem={({ item }) => <CardImage item={item} />}
+        renderItem={({ item }) => <CardImage photo={item} />}
         keyExtractor={item => item.id}
         numColumns={columns}
         showsVerticalScrollIndicator={false}
