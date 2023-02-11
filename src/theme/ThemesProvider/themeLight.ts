@@ -7,7 +7,8 @@ export const themeLight: DefaultTheme = {
     GRAY50: '#FAFAFA',
     GRAY200: '#EEEEEE',
     GRAY500: '#9E9E9E',
-    GRAY800: '#424242',
+    GRAY800: '#FAFAFA',
+    GRAY900: '#FAFAFA',
 
     OVERLAY: 'rgba(0, 0, 0, 0.5)',
   },

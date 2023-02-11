@@ -10,6 +10,7 @@ declare module 'styled-components' {
       GRAY200: string,
       GRAY500: string,
       GRAY800: string,
+      GRAY900: string,
 
       OVERLAY: string,
     };

@@ -2,12 +2,14 @@ import { DefaultTheme } from 'styled-components/native';
 
 export const themeDark: DefaultTheme = {
   COLORS: {
-    WHITE: '#FFFFFF',
-    DARK: '#121212',
+    WHITE: '#121212',
+    DARK: '#FFFFFF',
     GRAY50: '#FAFAFA',
     GRAY200: '#EEEEEE',
     GRAY500: '#9E9E9E',
     GRAY800: '#424242',
+    GRAY900: '#242423',
+    
 
     OVERLAY: 'rgba(0, 0, 0, 0.5)',
   },

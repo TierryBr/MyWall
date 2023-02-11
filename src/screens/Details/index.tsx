@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, StatusBar } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useTheme } from 'styled-components/native';
+import { IconButton, Button } from 'react-native-paper';
 
 import * as S from './styles';
 import { PhotoParams } from '@types/navigation';
@@ -26,30 +27,63 @@ export function Details() {
           }}
         />
         <S.Header>
-          <TouchableOpacity onPress={handleGoBack}>
-            <Icon
-              name="chevron-back-outline"
-              color={theme.COLORS.WHITE}
-              size={20}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => {}}>
-            <Icon name="heart-outline" color={theme.COLORS.WHITE} size={20} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => {}}>
-            <Icon name="share-outline" color={theme.COLORS.WHITE} size={20} />
-          </TouchableOpacity>
+          <IconButton
+            icon={() => (
+              <Icon
+                name="chevron-back-outline"
+                color={theme.COLORS.GRAY50}
+                size={25}
+              />
+            )}
+            iconColor={theme.COLORS.GRAY50}
+            size={25}
+            onPress={handleGoBack}
+          />
+          <IconButton
+            icon={() => (
+              <Icon
+                name="heart-outline"
+                color={theme.COLORS.GRAY50}
+                size={25}
+              />
+            )}
+            iconColor={theme.COLORS.GRAY50}
+            size={25}
+            onPress={() => {}}
+          />
+          <IconButton
+            icon={() => (
+              <Icon
+                name="share-outline"
+                color={theme.COLORS.GRAY50}
+                size={25}
+              />
+            )}
+            iconColor={theme.COLORS.GRAY50}
+            size={25}
+            onPress={() => {}}
+          />
         </S.Header>
       </S.Content>
       <S.Buttons>
-        <S.ButtonDownload>
+        <S.ButtonDownload mode="outlined" onPress={() => {}}>
           <S.TextButtonDownload>Download</S.TextButtonDownload>
         </S.ButtonDownload>
-        <S.ButtonWallpaper>
-          <S.TextButtonDownload style={{ color: theme.COLORS.WHITE }}>
+        <S.ButtonDownload
+          mode="contained"
+          style={{
+            backgroundColor: theme.COLORS.DARK,
+          }}
+          onPress={() => {}}
+        >
+          <S.TextButtonDownload
+            style={{
+              color: theme.COLORS.WHITE,
+            }}
+          >
             Wallpaper
           </S.TextButtonDownload>
-        </S.ButtonWallpaper>
+        </S.ButtonDownload>
       </S.Buttons>
     </S.Container>
   );

@@ -1,4 +1,6 @@
 import styled from 'styled-components/native';
+import { IconButton, Button } from 'react-native-paper';
+
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -37,24 +39,16 @@ export const Buttons = styled.View`
 
 `;
 
-export const ButtonDownload = styled.TouchableOpacity`
+export const ButtonDownload = styled(Button)`
   border-width: 1px;
   border-color: ${({ theme }) => theme.COLORS.DARK};
-  padding: 10px;
-  border-radius: 10px;
-  margin-right: 15px;
-`;
-
-export const ButtonWallpaper = styled.TouchableOpacity`
-  border-width: 1px;
-  border-color: ${({ theme }) => theme.COLORS.DARK};
-  background-color: ${({ theme }) => theme.COLORS.DARK};
-  padding: 10px;
   border-radius: 10px;
   margin-left: 15px;
+  margin-right: 15px;
 `;
 
 export const TextButtonDownload = styled.Text`
   font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
   font-size: ${({ theme }) => theme.FONT_SIZE.MEDIUM}px;
+  color: ${({ theme }) => theme.COLORS.DARK};
 `;

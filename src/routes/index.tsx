@@ -20,6 +20,9 @@ export function Routes() {
           headerShown: false,
           tabBarShowLabel: false,
           tabBarActiveTintColor: theme.COLORS.DARK,
+          tabBarStyle: {
+            backgroundColor: theme.COLORS.GRAY900,
+          },
         }}
       >
         <Tab.Screen
