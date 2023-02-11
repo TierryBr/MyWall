@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useTheme } from 'styled-components/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Home } from '@screens/Home';
 import { Settings } from '@screens/Settings';
@@ -10,13 +11,15 @@ import StackRoute from './Stack';
 const Tab = createBottomTabNavigator();
 
 export function Routes() {
+  const theme = useTheme();
+
   return (
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={{
           headerShown: false,
           tabBarShowLabel: false,
-          tabBarActiveTintColor: '#000',
+          tabBarActiveTintColor: theme.COLORS.DARK,
         }}
       >
         <Tab.Screen

@@ -31,8 +31,8 @@
       "@store/*": [
         "./src/reducers/*"
       ],
-      "@styles/*": [
-        "./src/styles/*"
+      "@theme/*": [
+        "./src/theme/*"
       ],
       "@utils/*": [
         "./src/utils/*"

@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 
-
 export const Container = styled.SafeAreaView`
   flex: 1;
+  background-color: ${({ theme }) => theme.COLORS.WHITE};
 `;
 
 export const Content = styled.View`
@@ -16,6 +16,7 @@ export const Header = styled.View`
   align-items: center;
   justify-content: space-between;
   padding: 15px;
+  margin-top: 40px;
 `;
 
 export const Image = styled.Image`
@@ -38,17 +39,22 @@ export const Buttons = styled.View`
 
 export const ButtonDownload = styled.TouchableOpacity`
   border-width: 1px;
-  border-color: #000;
+  border-color: ${({ theme }) => theme.COLORS.DARK};
   padding: 10px;
   border-radius: 10px;
   margin-right: 15px;
 `;
 
 export const ButtonWallpaper = styled.TouchableOpacity`
-  border-width: 1;
-  border-color: #000;
-  background-color: #000;
+  border-width: 1px;
+  border-color: ${({ theme }) => theme.COLORS.DARK};
+  background-color: ${({ theme }) => theme.COLORS.DARK};
   padding: 10px;
   border-radius: 10px;
   margin-left: 15px;
+`;
+
+export const TextButtonDownload = styled.Text`
+  font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+  font-size: ${({ theme }) => theme.FONT_SIZE.MEDIUM}px;
 `;

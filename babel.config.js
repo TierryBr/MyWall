@@ -15,9 +15,9 @@ module.exports = function (api) {
             '@types': './src/@types',
             '@reducers': './src/reducers',
             '@store': './src/store',
-            '@styles': './src/styles',
             '@utils': './src/utils',
-            '@i18n': './src/i18n'
+            '@i18n': './src/i18n',
+            '@theme': './src/theme'
           }
         }
       ]
