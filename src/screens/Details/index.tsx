@@ -92,14 +92,14 @@ export function Details() {
     } else {
       setValue(value + 1);
       await ReactNativeBlobUtil.config({
-        path: `${basePath}/${value + photo.name}`,
+        path: `${basePath}/(${value}) ${photo.name}`,
         fileCache: true,
       })
         .fetch('GET', `${photo.url}`)
         .then(async res => {
           await ReactNativeBlobUtil.MediaCollection.copyToMediaStore(
             {
-              name: `${value + photo.name}`,
+              name: `(${value}) ${photo.name}`,
               parentFolder: 'MyWall',
               mimeType: 'image/*',
             },
@@ -108,12 +108,18 @@ export function Details() {
           )
             .then(async () => {
               await ReactNativeBlobUtil.fs.unlink(res.path());
+
               setMsgDownload('Download concluído!');
               setSnackbarVisible(true);
             })
             .catch(() => {
               setMsgDownload('Erro ao realizar download!');
               setSnackbarVisible(true);
+            })
+            .finally(async () => {
+              await ReactNativeBlobUtil.fs.unlink(
+                `${basePath}/(${value}) ${photo.name}`,
+              );
             });
         });
     }

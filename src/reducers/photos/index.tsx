@@ -10,9 +10,12 @@ const photoSlice = createSlice({
     addPhotos: (state, action) => {
       state.listPhotos = action.payload;
     },
+    addPhotosEmpty: (state, action) => {
+      state.listPhotos = [...state.listPhotos, action.payload];
+    },
   },
 });
 
 export const reducerPhotos = photoSlice.reducer;
 
-export const { addPhotos } = photoSlice.actions;
+export const { addPhotos, addPhotosEmpty } = photoSlice.actions;
