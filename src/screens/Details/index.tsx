@@ -3,14 +3,26 @@ import { View, Text } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useTheme } from 'styled-components/native';
-import { IconButton, Button, Dialog, Portal, List } from 'react-native-paper';
+import {
+  IconButton,
+  Button,
+  Dialog,
+  Portal,
+  List,
+  Snackbar,
+} from 'react-native-paper';
 import ManageWallpaper, { TYPE } from '@tierrybr/react-native-manage-wallpaper';
+import ReactNativeBlobUtil from 'react-native-blob-util';
 
 import * as S from './styles';
 import { PhotoParams } from '@types/navigation';
+import { requestWriteExternalStorage } from '@utils/permissions';
 
 export function Details() {
   const [visible, setVisible] = useState(false);
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
+  const [msgDownload, setMsgDownload] = useState('');
+  const [value, setValue] = useState(1);
 
   const showDialog = () => setVisible(true);
   const hideDialog = () => setVisible(false);
@@ -36,6 +48,75 @@ export function Details() {
       },
       type,
     );
+  }
+
+  async function downloadWallpaper() {
+    const hasPermission = await requestWriteExternalStorage();
+    if (!hasPermission) {
+      setMsgDownload('Permissão negada!');
+      setSnackbarVisible(true);
+      return navigation.goBack();
+    }
+    const basePath = ReactNativeBlobUtil.fs.dirs.DownloadDir;
+
+    const fileExists = await ReactNativeBlobUtil.fs.exists(
+      `${basePath}/${photo.title}`,
+    );
+
+    if (!fileExists) {
+      setValue(1);
+      await ReactNativeBlobUtil.config({
+        path: `${basePath}/${photo.title}`,
+        fileCache: true,
+      })
+        .fetch('GET', `${photo.imagem}`)
+        .then(async res => {
+          await ReactNativeBlobUtil.MediaCollection.copyToMediaStore(
+            {
+              name: `${photo.title}`,
+              parentFolder: 'MyWall',
+              mimeType: 'image/*',
+            },
+            'Download',
+            `${res.path()}`,
+          )
+            .then(async () => {
+              setMsgDownload('Download concluído!');
+              setSnackbarVisible(true);
+            })
+            .catch(() => {
+              setMsgDownload('Erro ao realizar download!');
+              setSnackbarVisible(true);
+            });
+        });
+    } else {
+      setValue(value + 1);
+      await ReactNativeBlobUtil.config({
+        path: `${basePath}/${value + photo.title}`,
+        fileCache: true,
+      })
+        .fetch('GET', `${photo.imagem}`)
+        .then(async res => {
+          await ReactNativeBlobUtil.MediaCollection.copyToMediaStore(
+            {
+              name: `${value + photo.title}`,
+              parentFolder: 'MyWall',
+              mimeType: 'image/*',
+            },
+            'Download',
+            `${res.path()}`,
+          )
+            .then(async () => {
+              await ReactNativeBlobUtil.fs.unlink(res.path());
+              setMsgDownload('Download concluído!');
+              setSnackbarVisible(true);
+            })
+            .catch(() => {
+              setMsgDownload('Erro ao realizar download!');
+              setSnackbarVisible(true);
+            });
+        });
+    }
   }
 
   return (
@@ -86,7 +167,7 @@ export function Details() {
         </S.Header>
       </S.Content>
       <S.Buttons>
-        <S.ButtonDownload mode="outlined" onPress={() => {}}>
+        <S.ButtonDownload mode="outlined" onPress={downloadWallpaper}>
           <S.TextButtonDownload>Download</S.TextButtonDownload>
         </S.ButtonDownload>
         <S.ButtonDownload
@@ -105,6 +186,23 @@ export function Details() {
           </S.TextButtonDownload>
         </S.ButtonDownload>
       </S.Buttons>
+
+      <Snackbar
+        visible={snackbarVisible}
+        onDismiss={() =>
+          setTimeout(() => {
+            setSnackbarVisible(false);
+          }, 3000)
+        }
+        duration={2000}
+        action={{
+          label: 'Fechar',
+          labelStyle: { color: '#FFF' },
+          onPress: () => setSnackbarVisible(false),
+        }}
+      >
+        {msgDownload}
+      </Snackbar>
 
       <View>
         <Portal>
