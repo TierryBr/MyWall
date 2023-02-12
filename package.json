@@ -16,6 +16,7 @@
     "@react-navigation/native": "^6.1.3",
     "@react-navigation/native-stack": "^6.9.9",
     "@reduxjs/toolkit": "^1.9.2",
+    "@tierrybr/react-native-manage-wallpaper": "^1.1.3",
     "add": "^2.0.6",
     "expo": "~47.0.12",
     "expo-font": "~11.0.1",
