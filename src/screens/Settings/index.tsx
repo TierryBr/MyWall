@@ -1,24 +1,14 @@
-import { SettingsItens } from '@components/SettingsItens';
 import React, { useState } from 'react';
-import { View, Text, StatusBar } from 'react-native';
-import { changeTheme, changeThemeConfigSelected } from '../../reducers/themes';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useTheme } from 'styled-components/native';
-import {
-  Divider,
-  List,
-  Button,
-  Dialog,
-  Portal,
-  RadioButton,
-} from 'react-native-paper';
+import { Divider, List } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import * as S from './styles';
+import { ModalTheme } from '@components/ModalTheme';
 
 export function Settings() {
   const [visible, setVisible] = useState(false);
-  const dispatch = useDispatch();
   const theme = useTheme();
 
   const showModal = () => setVisible(true);
@@ -117,53 +107,7 @@ export function Settings() {
         />
       </List.Section>
 
-      <View>
-        <Portal>
-          <Dialog
-            visible={visible}
-            onDismiss={hideModal}
-            style={{ backgroundColor: theme.COLORS.GRAY800 }}
-          >
-            <Dialog.Title style={{ color: theme.COLORS.DARK }}>
-              Tema
-            </Dialog.Title>
-            <Dialog.Content>
-              <RadioButton.Group
-                onValueChange={value => {
-                  if (value === 'themeLight') {
-                    dispatch(changeTheme('themeLight'));
-                  } else {
-                    dispatch(changeTheme('themeDark'));
-                  }
-                }}
-                value={SelectedTheme}
-              >
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <RadioButton
-                    value="themeLight"
-                    color={theme.COLORS.DARK}
-                    uncheckedColor={theme.COLORS.GRAY500}
-                  />
-                  <Text style={{ color: theme.COLORS.DARK }}>Claro</Text>
-                </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <RadioButton
-                    value="themeDark"
-                    color={theme.COLORS.DARK}
-                    uncheckedColor={theme.COLORS.GRAY500}
-                  />
-                  <Text style={{ color: theme.COLORS.DARK }}>Escuro</Text>
-                </View>
-              </RadioButton.Group>
-            </Dialog.Content>
-            <Dialog.Actions>
-              <Button onPress={hideModal}>
-                <Text style={{ color: theme.COLORS.DARK }}>Fechar</Text>
-              </Button>
-            </Dialog.Actions>
-          </Dialog>
-        </Portal>
-      </View>
+      <ModalTheme visible={visible} hideModal={hideModal} />
     </S.Container>
   );
 }
