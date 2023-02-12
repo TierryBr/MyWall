@@ -1,7 +1,9 @@
 export interface PhotoParams {
-  id: string;
-  title: string;
-  imagem: string;
+  createdAt: string;
+  _id: string;
+  key: string;
+  name: string;
+  url: string;
 }
 
 export declare global {

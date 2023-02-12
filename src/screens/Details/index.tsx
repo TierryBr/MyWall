@@ -39,7 +39,7 @@ export function Details() {
   function setWallpaper(type: string) {
     ManageWallpaper.setWallpaper(
       {
-        uri: `${photo.imagem}`,
+        uri: `${photo.url}`,
       },
       res => {
         if (res.status === 'success') {
@@ -60,20 +60,20 @@ export function Details() {
     const basePath = ReactNativeBlobUtil.fs.dirs.DownloadDir;
 
     const fileExists = await ReactNativeBlobUtil.fs.exists(
-      `${basePath}/${photo.title}`,
+      `${basePath}/${photo.name}`,
     );
 
     if (!fileExists) {
       setValue(1);
       await ReactNativeBlobUtil.config({
-        path: `${basePath}/${photo.title}`,
+        path: `${basePath}/${photo.name}`,
         fileCache: true,
       })
-        .fetch('GET', `${photo.imagem}`)
+        .fetch('GET', `${photo.url}`)
         .then(async res => {
           await ReactNativeBlobUtil.MediaCollection.copyToMediaStore(
             {
-              name: `${photo.title}`,
+              name: `${photo.name}`,
               parentFolder: 'MyWall',
               mimeType: 'image/*',
             },
@@ -92,14 +92,14 @@ export function Details() {
     } else {
       setValue(value + 1);
       await ReactNativeBlobUtil.config({
-        path: `${basePath}/${value + photo.title}`,
+        path: `${basePath}/${value + photo.name}`,
         fileCache: true,
       })
-        .fetch('GET', `${photo.imagem}`)
+        .fetch('GET', `${photo.url}`)
         .then(async res => {
           await ReactNativeBlobUtil.MediaCollection.copyToMediaStore(
             {
-              name: `${value + photo.title}`,
+              name: `${value + photo.name}`,
               parentFolder: 'MyWall',
               mimeType: 'image/*',
             },
@@ -124,7 +124,7 @@ export function Details() {
       <S.Content>
         <S.Image
           source={{
-            uri: `${photo.imagem}`,
+            uri: `${photo.url}`,
           }}
         />
         <S.Header>

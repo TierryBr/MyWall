@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import * as S from './styles';
@@ -12,15 +11,15 @@ export function CardImage({ photo }) {
     return <S.CardImage empty={photo.empty} />;
   }
 
-  function handleOPenPhoto({ id, title, imagem }: PhotoParams) {
-    navigation.navigate('Details', { id, title, imagem });
+  function handleOPenPhoto({ createdAt, _id, key, name, url }: PhotoParams) {
+    navigation.navigate('Details', { createdAt, _id, key, name, url });
   }
 
   return (
     <S.CardImage activeOpacity={0.8} onPress={() => handleOPenPhoto(photo)}>
       <S.Image
         source={{
-          uri: `${photo.imagem}`,
+          uri: `${photo.url}`,
         }}
       />
     </S.CardImage>

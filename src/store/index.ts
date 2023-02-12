@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import { reducerTheme } from '../reducers/themes';
+import { reducerPhotos } from '../reducers/photos';
 
 import { persistReducer, createTransform } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -14,6 +15,7 @@ const persistConfig = {
 
 const reducer = combineReducers({
   reducerTheme,
+  reducerPhotos
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
