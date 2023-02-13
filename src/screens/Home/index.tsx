@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, FlatList, ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTheme } from 'styled-components/native';
 import { CardImage } from '@components/CardImage';
 import { addPhotos, addPhotosEmpty } from '@reducers/photos';
 
@@ -10,6 +11,7 @@ export function Home() {
   const [request, setRequest] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
   const dispatch = useDispatch();
+  const theme = useTheme();
   const columns = 2;
 
   const { listPhotos } = useSelector((state: any) => state.reducerPhotos);
@@ -69,7 +71,9 @@ export function Home() {
           ListFooterComponentStyle={{ margin: 50 }}
         />
       ) : (
-        <ActivityIndicator color={'#f0f'} size={40} />
+        <S.LoadingCenter>
+          <ActivityIndicator color={theme.COLORS.DARK} size={30} />
+        </S.LoadingCenter>
       )}
     </S.Container>
   );

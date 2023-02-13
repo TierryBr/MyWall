@@ -7,4 +7,9 @@ export const Container = styled.SafeAreaView`
   margin-top: 40px;
 `;
 
+export const LoadingCenter = styled.View`
+  flex: 1;
+  justify-content: center;
+`;
+
 
