@@ -1,15 +1,15 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { useTheme } from 'styled-components/native';
+import convertDateToString from '@utils';
 
 import * as S from './styles';
 import { PhotoParams } from '@types/navigation';
 
-export function CardImage({ photo }) {
+export function CardImageFavorites({ photo }) {
+  const theme = useTheme();
   const navigation = useNavigation();
-
-  if (photo.empty) {
-    return <S.CardImage empty={photo.empty} />;
-  }
 
   function handleOPenPhoto({
     createdAt,
@@ -35,7 +35,12 @@ export function CardImage({ photo }) {
         source={{
           uri: `${photo.url}`,
         }}
-      />
+      >
+        <S.InfoPhoto colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.9)']}>
+          <Icon name="heart-half" color={theme.COLORS.GRAY50} size={25} />
+          <S.InfoTextPhoto>{convertDateToString(photo.date)}</S.InfoTextPhoto>
+        </S.InfoPhoto>
+      </S.Image>
     </S.CardImage>
   );
 }

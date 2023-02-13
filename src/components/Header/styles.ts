@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
+import { LinearGradient } from 'expo-linear-gradient';
 
-export const Header = styled.View`
+export const Header = styled(LinearGradient)`
   width: 100%;
   flex-direction: row;
   align-items: center;

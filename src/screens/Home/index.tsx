@@ -21,7 +21,18 @@ export function Home() {
       await fetch(process.env.API_URL)
         .then(async resp => {
           const jsondata = await resp.json();
-          dispatch(addPhotos(jsondata));
+          dispatch(
+            addPhotos(
+              jsondata.map((file, index) => ({
+                createdAt: file.CreatedAt,
+                key: file.key,
+                name: file.name,
+                url: file.url,
+                favorite: listPhotos[index]?.favorite,
+                date: new Date(),
+              })),
+            ),
+          );
           setRequest(true);
         })
         .catch(e => {
@@ -37,9 +48,9 @@ export function Home() {
   }, [isFetching]);
 
   const formatData = (data, numColumns) => {
-    const numberOfFullRows = Math.floor(data.length / numColumns);
+    const numberOfFullRows = Math.floor(data?.length / numColumns);
 
-    let numberOfElementsLastRow = data.length - numberOfFullRows * numColumns;
+    let numberOfElementsLastRow = data?.length - numberOfFullRows * numColumns;
     while (
       numberOfElementsLastRow !== numColumns &&
       numberOfElementsLastRow !== 0
@@ -68,7 +79,9 @@ export function Home() {
           refreshing={isFetching}
           showsVerticalScrollIndicator={false}
           ListFooterComponent={<View />}
+          ListHeaderComponent={<View />}
           ListFooterComponentStyle={{ margin: 50 }}
+          ListHeaderComponentStyle={{ margin: 10 }}
         />
       ) : (
         <S.LoadingCenter>
