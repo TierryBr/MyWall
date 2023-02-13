@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Ionicons';
+
 import { useTheme } from 'styled-components/native';
-import {
-  IconButton,
-  Button,
-  Dialog,
-  Portal,
-  List,
-  Snackbar,
-} from 'react-native-paper';
+import { Button, Dialog, Portal, List, Snackbar } from 'react-native-paper';
 import ManageWallpaper, { TYPE } from '@tierrybr/react-native-manage-wallpaper';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 
 import * as S from './styles';
 import { PhotoParams } from '@types/navigation';
 import { requestWriteExternalStorage } from '@utils/permissions';
+import { Header } from '@components/Header';
 
 export function Details() {
   const [visible, setVisible] = useState(false);
@@ -31,10 +25,6 @@ export function Details() {
   const theme = useTheme();
   const route = useRoute();
   const photo = route.params as PhotoParams;
-
-  function handleGoBack() {
-    navigation.goBack();
-  }
 
   function setWallpaper(type: string) {
     ManageWallpaper.setWallpaper(
@@ -133,44 +123,7 @@ export function Details() {
             uri: `${photo.url}`,
           }}
         />
-        <S.Header>
-          <IconButton
-            icon={() => (
-              <Icon
-                name="chevron-back-outline"
-                color={theme.COLORS.GRAY50}
-                size={25}
-              />
-            )}
-            iconColor={theme.COLORS.GRAY50}
-            size={25}
-            onPress={handleGoBack}
-          />
-          <IconButton
-            icon={() => (
-              <Icon
-                name="heart-outline"
-                color={theme.COLORS.GRAY50}
-                size={25}
-              />
-            )}
-            iconColor={theme.COLORS.GRAY50}
-            size={25}
-            onPress={() => {}}
-          />
-          <IconButton
-            icon={() => (
-              <Icon
-                name="share-outline"
-                color={theme.COLORS.GRAY50}
-                size={25}
-              />
-            )}
-            iconColor={theme.COLORS.GRAY50}
-            size={25}
-            onPress={() => {}}
-          />
-        </S.Header>
+        <Header photo={photo} />
       </S.Content>
       <S.Buttons>
         <S.ButtonDownload mode="outlined" onPress={downloadWallpaper}>
