@@ -24,7 +24,7 @@ export function Favorites() {
         ListFooterComponent={<View />}
         ListHeaderComponent={<View />}
         ListFooterComponentStyle={{ margin: 50 }}
-        ListHeaderComponentStyle={{ margin: 10 }}
+        ListHeaderComponentStyle={{ marginTop: 50 }}
         ListEmptyComponent={
           <S.FavoritesEmpty>
             <SvgComponent />

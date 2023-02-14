@@ -27,7 +27,7 @@ export function Settings() {
 
   return (
     <S.Container>
-      <List.Section style={{ paddingHorizontal: 10 }}>
+      <List.Section style={{ paddingHorizontal: 10, marginTop: 40 }}>
         <List.Subheader style={{ color: theme.COLORS.DARK }}>
           {t('screens:content.personalization')}
         </List.Subheader>
