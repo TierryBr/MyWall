@@ -1,21 +1,23 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { addPhotosEmpty } from '@reducers/photos';
+import { useSelector } from 'react-redux';
 
 import { CardImageFavorites } from '@components/CardImageFavorites';
+import SvgComponent from '../../assets/WithotFavorite';
 
 import * as S from './styles';
+import { useTranslation } from 'react-i18next';
 
 export function Favorites() {
-  const dispatch = useDispatch();
-
+  const { t } = useTranslation();
   const { listPhotos } = useSelector((state: any) => state.reducerPhotos);
+
+  const favoriteImages = listPhotos.filter(photo => photo.favorite === true);
 
   return (
     <S.Container>
       <FlatList
-        data={listPhotos.filter(photo => photo.favorite === true)}
+        data={favoriteImages}
         renderItem={({ item }) => <CardImageFavorites photo={item} />}
         keyExtractor={item => item.key}
         showsVerticalScrollIndicator={false}
@@ -23,6 +25,14 @@ export function Favorites() {
         ListHeaderComponent={<View />}
         ListFooterComponentStyle={{ margin: 50 }}
         ListHeaderComponentStyle={{ margin: 10 }}
+        ListEmptyComponent={
+          <S.FavoritesEmpty>
+            <SvgComponent />
+            <S.TextFavorites>
+              {t('screens:content.favorites-empty')}
+            </S.TextFavorites>
+          </S.FavoritesEmpty>
+        }
       />
     </S.Container>
   );
