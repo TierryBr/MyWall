@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { Linking } from 'react-native';
 import { useSelector } from 'react-redux';
 import { useTheme } from 'styled-components/native';
 import { Divider, List } from 'react-native-paper';
@@ -24,6 +25,32 @@ export function Settings() {
   const { theme: SelectedTheme } = useSelector(
     (state: any) => state.reducerTheme,
   );
+
+  const handlePressPrivacyPolicy = useCallback(async () => {
+    const supported = await Linking.canOpenURL(
+      'https://github.com/TierryBr/MyWall/blob/main/PRIVACY.md',
+    );
+    if (supported) {
+      await Linking.openURL(
+        'https://github.com/TierryBr/MyWall/blob/main/PRIVACY.md',
+      );
+    } else {
+      console.log('Dont know how to open this URL');
+    }
+  }, []);
+
+  const handlePressTerms = useCallback(async () => {
+    const supported = await Linking.canOpenURL(
+      'https://github.com/TierryBr/MyWall/blob/main/TERMS.md',
+    );
+    if (supported) {
+      await Linking.openURL(
+        'https://github.com/TierryBr/MyWall/blob/main/TERMS.md',
+      );
+    } else {
+      console.log('Dont know how to open this URL');
+    }
+  }, []);
 
   return (
     <S.Container>
@@ -100,7 +127,7 @@ export function Settings() {
           title={t('screens:content.terms-of-use')}
           titleStyle={{ color: theme.COLORS.DARK }}
           rippleColor={theme.COLORS.OVERLAY}
-          onPress={() => {}}
+          onPress={handlePressTerms}
           left={() => (
             <Icon
               name="document-text-outline"
@@ -113,7 +140,7 @@ export function Settings() {
           title={t('screens:content.privacy-policy')}
           titleStyle={{ color: theme.COLORS.DARK }}
           rippleColor={theme.COLORS.OVERLAY}
-          onPress={() => {}}
+          onPress={handlePressPrivacyPolicy}
           left={() => (
             <Icon
               name="document-attach-outline"
