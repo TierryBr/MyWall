@@ -1,19 +1,18 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from 'styled-components/native';
 import { Button, Dialog, Portal, RadioButton } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
-import { changeTheme } from '../../reducers/themes';
 
-export function ModalTheme({ visible, hideModal }) {
-  const dispatch = useDispatch();
+export function ModalLanguage({ visible, hideModal }) {
   const theme = useTheme();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
-  const { theme: SelectedTheme } = useSelector(
-    (state: any) => state.reducerTheme,
-  );
+  const changeLanguage = value => {
+    i18n.changeLanguage(value);
+    AsyncStorage.setItem('@lang', value);
+  };
 
   return (
     <View>
@@ -29,33 +28,37 @@ export function ModalTheme({ visible, hideModal }) {
           <Dialog.Content>
             <RadioButton.Group
               onValueChange={value => {
-                if (value === 'themeLight') {
-                  dispatch(changeTheme('themeLight'));
-                } else {
-                  dispatch(changeTheme('themeDark'));
-                }
+                if (value === 'en-US') {
+                  changeLanguage('en-US');
+                } else if (value === 'es-ES') {
+                  changeLanguage('es-ES');
+                } else changeLanguage('pt_BR');
               }}
-              value={SelectedTheme}
+              value={i18n.language}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <RadioButton
-                  value="themeLight"
+                  value="pt_BR"
                   color={theme.COLORS.DARK}
                   uncheckedColor={theme.COLORS.GRAY500}
                 />
-                <Text style={{ color: theme.COLORS.DARK }}>
-                  {t('screens:content.light')}
-                </Text>
+                <Text style={{ color: theme.COLORS.DARK }}>Português</Text>
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <RadioButton
-                  value="themeDark"
+                  value="en-US"
                   color={theme.COLORS.DARK}
                   uncheckedColor={theme.COLORS.GRAY500}
                 />
-                <Text style={{ color: theme.COLORS.DARK }}>
-                  {t('screens:content.dark')}
-                </Text>
+                <Text style={{ color: theme.COLORS.DARK }}>Inglês</Text>
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <RadioButton
+                  value="es-ES"
+                  color={theme.COLORS.DARK}
+                  uncheckedColor={theme.COLORS.GRAY500}
+                />
+                <Text style={{ color: theme.COLORS.DARK }}>Espanhol</Text>
               </View>
             </RadioButton.Group>
           </Dialog.Content>

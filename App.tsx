@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes } from '@routes';
 import { useFonts } from 'expo-font';
 import {
@@ -8,6 +8,7 @@ import {
   Nunito_700Bold,
   Nunito_900Black,
 } from '@expo-google-fonts/nunito';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ThemeProvider } from 'styled-components/native';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { useSelector } from 'react-redux';
@@ -29,6 +30,18 @@ export default function App() {
     Nunito_700Bold,
     Nunito_900Black,
   });
+
+  const loadStorageData = async () => {
+    const lang: any = await AsyncStorage.getItem('@lang');
+    if (!lang) {
+      await AsyncStorage.setItem('@lang', 'pt_BR');
+    }
+    i18n.changeLanguage(lang);
+  };
+
+  useEffect(() => {
+    loadStorageData();
+  }, []);
 
   const verifyTheme = () => {
     if (theme === 'themeDark') return 'light-content';

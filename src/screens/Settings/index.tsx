@@ -4,17 +4,22 @@ import { useTheme } from 'styled-components/native';
 import { Divider, List } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useTranslation } from 'react-i18next';
+import { ModalTheme } from '@components/ModalTheme';
+import { ModalLanguage } from '@components/ModalLanguage';
 
 import * as S from './styles';
-import { ModalTheme } from '@components/ModalTheme';
 
 export function Settings() {
-  const [visible, setVisible] = useState(false);
+  const [visibleTheme, setVisibleTheme] = useState(false);
+  const [visibleLanguage, setVisibleLanguage] = useState(false);
   const theme = useTheme();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
+  const showModalTheme = () => setVisibleTheme(true);
+  const hideModalTheme = () => setVisibleTheme(false);
+
+  const showModalLanguage = () => setVisibleLanguage(true);
+  const hideModalLanguage = () => setVisibleLanguage(false);
 
   const { theme: SelectedTheme } = useSelector(
     (state: any) => state.reducerTheme,
@@ -36,7 +41,7 @@ export function Settings() {
           titleStyle={{ color: theme.COLORS.DARK }}
           descriptionStyle={{ color: theme.COLORS.GRAY500 }}
           rippleColor={theme.COLORS.OVERLAY}
-          onPress={showModal}
+          onPress={showModalTheme}
           left={() => (
             <Icon
               name="color-palette-outline"
@@ -47,11 +52,17 @@ export function Settings() {
         />
         <List.Item
           title={t('screens:content.language')}
-          description="Português"
+          description={
+            i18n.language === 'en-US'
+              ? 'Inglês'
+              : i18n.language === 'es-ES'
+              ? 'Espanhol'
+              : 'Português'
+          }
           titleStyle={{ color: theme.COLORS.DARK }}
           descriptionStyle={{ color: theme.COLORS.GRAY500 }}
           rippleColor={theme.COLORS.OVERLAY}
-          onPress={() => {}}
+          onPress={showModalLanguage}
           left={() => (
             <Icon name="language-outline" color={theme.COLORS.DARK} size={20} />
           )}
@@ -113,7 +124,8 @@ export function Settings() {
         />
       </List.Section>
 
-      <ModalTheme visible={visible} hideModal={hideModal} />
+      <ModalTheme visible={visibleTheme} hideModal={hideModalTheme} />
+      <ModalLanguage visible={visibleLanguage} hideModal={hideModalLanguage} />
     </S.Container>
   );
 }
