@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 import { useTheme } from 'styled-components/native';
 import { Button, Dialog, Portal, List, Snackbar } from 'react-native-paper';
@@ -22,6 +23,7 @@ export function Details() {
   const hideDialog = () => setVisible(false);
 
   const navigation = useNavigation();
+  const { t } = useTranslation();
   const theme = useTheme();
   const route = useRoute();
   const photo = route.params as PhotoParams;
@@ -43,7 +45,7 @@ export function Details() {
   async function downloadWallpaper() {
     const hasPermission = await requestWriteExternalStorage();
     if (!hasPermission) {
-      setMsgDownload('Permissão negada!');
+      setMsgDownload(t('screens:content.permission-denied'));
       setSnackbarVisible(true);
       return navigation.goBack();
     }
@@ -71,11 +73,11 @@ export function Details() {
             `${res.path()}`,
           )
             .then(async () => {
-              setMsgDownload('Download concluído!');
+              setMsgDownload(t('screens:content.success-download'));
               setSnackbarVisible(true);
             })
             .catch(() => {
-              setMsgDownload('Erro ao realizar download!');
+              setMsgDownload(t('screens:content.error-download'));
               setSnackbarVisible(true);
             });
         });
@@ -99,11 +101,11 @@ export function Details() {
             .then(async () => {
               await ReactNativeBlobUtil.fs.unlink(res.path());
 
-              setMsgDownload('Download concluído!');
+              setMsgDownload(t('screens:content.success-download'));
               setSnackbarVisible(true);
             })
             .catch(() => {
-              setMsgDownload('Erro ao realizar download!');
+              setMsgDownload(t('screens:content.error-download'));
               setSnackbarVisible(true);
             })
             .finally(async () => {
@@ -127,7 +129,9 @@ export function Details() {
       </S.Content>
       <S.Buttons>
         <S.ButtonDownload mode="outlined" onPress={downloadWallpaper}>
-          <S.TextButtonDownload>Download</S.TextButtonDownload>
+          <S.TextButtonDownload>
+            {t('screens:content.download')}
+          </S.TextButtonDownload>
         </S.ButtonDownload>
         <S.ButtonDownload
           mode="contained"
@@ -141,7 +145,7 @@ export function Details() {
               color: theme.COLORS.WHITE,
             }}
           >
-            Wallpaper
+            {t('screens:content.apply')}
           </S.TextButtonDownload>
         </S.ButtonDownload>
       </S.Buttons>
@@ -155,7 +159,7 @@ export function Details() {
         }
         duration={2000}
         action={{
-          label: 'Fechar',
+          label: t('screens:content.close'),
           labelStyle: { color: '#FFF' },
           onPress: () => setSnackbarVisible(false),
         }}
@@ -171,24 +175,24 @@ export function Details() {
             style={{ backgroundColor: theme.COLORS.GRAY800 }}
           >
             <Dialog.Title style={{ color: theme.COLORS.DARK }}>
-              Definir wallpaper
+              {t('screens:content.set-wallpaper')}
             </Dialog.Title>
             <Dialog.Content>
               <List.Section>
                 <List.Item
-                  title="Tela inicial"
+                  title={t('screens:content.home-screen')}
                   titleStyle={{ color: theme.COLORS.DARK }}
                   rippleColor={theme.COLORS.OVERLAY}
                   onPress={() => setWallpaper(TYPE.HOME)}
                 />
                 <List.Item
-                  title="Tela de bloqueio"
+                  title={t('screens:content.lock-screen')}
                   titleStyle={{ color: theme.COLORS.DARK }}
                   rippleColor={theme.COLORS.OVERLAY}
                   onPress={() => setWallpaper(TYPE.LOCK)}
                 />
                 <List.Item
-                  title="Tela inicial e Tela de bloqueio"
+                  title={t('screens:content.home-lock-screen')}
                   titleStyle={{ color: theme.COLORS.DARK }}
                   rippleColor={theme.COLORS.OVERLAY}
                   onPress={() => setWallpaper(TYPE.BOTH)}
@@ -197,7 +201,9 @@ export function Details() {
             </Dialog.Content>
             <Dialog.Actions>
               <Button onPress={hideDialog}>
-                <Text style={{ color: theme.COLORS.DARK }}>Fechar</Text>
+                <Text style={{ color: theme.COLORS.DARK }}>
+                  {t('screens:content.close')}
+                </Text>
               </Button>
             </Dialog.Actions>
           </Dialog>

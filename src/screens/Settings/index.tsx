@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useTheme } from 'styled-components/native';
 import { Divider, List } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useTranslation } from 'react-i18next';
 
 import * as S from './styles';
 import { ModalTheme } from '@components/ModalTheme';
@@ -10,6 +11,7 @@ import { ModalTheme } from '@components/ModalTheme';
 export function Settings() {
   const [visible, setVisible] = useState(false);
   const theme = useTheme();
+  const { t } = useTranslation();
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
@@ -22,11 +24,15 @@ export function Settings() {
     <S.Container>
       <List.Section style={{ paddingHorizontal: 10 }}>
         <List.Subheader style={{ color: theme.COLORS.DARK }}>
-          Personalização
+          {t('screens:content.personalization')}
         </List.Subheader>
         <List.Item
-          title="Tema"
-          description={SelectedTheme === 'themeDark' ? 'Escuro' : 'Claro'}
+          title={t('screens:content.theme')}
+          description={
+            SelectedTheme === 'themeDark'
+              ? t('screens:content.dark')
+              : t('screens:content.light')
+          }
           titleStyle={{ color: theme.COLORS.DARK }}
           descriptionStyle={{ color: theme.COLORS.GRAY500 }}
           rippleColor={theme.COLORS.OVERLAY}
@@ -40,7 +46,7 @@ export function Settings() {
           )}
         />
         <List.Item
-          title="Idioma"
+          title={t('screens:content.language')}
           description="Português"
           titleStyle={{ color: theme.COLORS.DARK }}
           descriptionStyle={{ color: theme.COLORS.GRAY500 }}
@@ -52,10 +58,10 @@ export function Settings() {
         />
         <Divider />
         <List.Subheader style={{ color: theme.COLORS.DARK }}>
-          Sobre
+          {t('screens:content.about')}
         </List.Subheader>
         <List.Item
-          title="Versão"
+          title={t('screens:content.version')}
           description="1.0.0"
           titleStyle={{ color: theme.COLORS.DARK }}
           descriptionStyle={{ color: theme.COLORS.GRAY500 }}
@@ -69,8 +75,8 @@ export function Settings() {
           )}
         />
         <List.Item
-          title="Classifique o aplicativo"
-          description="Se gostou do MyWall avalie ele na PlayStore"
+          title={t('screens:content.rate-app')}
+          description={t('screens:content.rate-app-desc')}
           titleStyle={{ color: theme.COLORS.DARK }}
           descriptionStyle={{ color: theme.COLORS.GRAY500 }}
           rippleColor={theme.COLORS.OVERLAY}
@@ -80,7 +86,7 @@ export function Settings() {
           )}
         />
         <List.Item
-          title="Termos de uso"
+          title={t('screens:content.terms-of-use')}
           titleStyle={{ color: theme.COLORS.DARK }}
           rippleColor={theme.COLORS.OVERLAY}
           onPress={() => {}}
@@ -93,7 +99,7 @@ export function Settings() {
           )}
         />
         <List.Item
-          title="Política de privacidade"
+          title={t('screens:content.privacy-policy')}
           titleStyle={{ color: theme.COLORS.DARK }}
           rippleColor={theme.COLORS.OVERLAY}
           onPress={() => {}}

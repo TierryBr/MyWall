@@ -23,7 +23,9 @@
     "expo-linear-gradient": "~12.0.1",
     "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
+    "i18next": "^22.4.9",
     "react": "18.1.0",
+    "react-i18next": "^12.1.5",
     "react-native": "0.70.5",
     "react-native-blob-util": "^0.17.1",
     "react-native-paper": "^5.2.0",
@@ -40,6 +42,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@types/react": "^18.0.27",
+    "@types/react-i18next": "^8.1.0",
     "@types/react-native": "^0.71.2",
     "@types/styled-components-react-native": "^5.2.1",
     "@typescript-eslint/eslint-plugin": "^5.0.0",

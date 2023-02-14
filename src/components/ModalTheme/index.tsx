@@ -3,11 +3,13 @@ import { View, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from 'styled-components/native';
 import { Button, Dialog, Portal, RadioButton } from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
 import { changeTheme } from '../../reducers/themes';
 
 export function ModalTheme({ visible, hideModal }) {
   const dispatch = useDispatch();
   const theme = useTheme();
+  const { t } = useTranslation();
 
   const { theme: SelectedTheme } = useSelector(
     (state: any) => state.reducerTheme,
@@ -21,7 +23,9 @@ export function ModalTheme({ visible, hideModal }) {
           onDismiss={hideModal}
           style={{ backgroundColor: theme.COLORS.GRAY800 }}
         >
-          <Dialog.Title style={{ color: theme.COLORS.DARK }}>Tema</Dialog.Title>
+          <Dialog.Title style={{ color: theme.COLORS.DARK }}>
+            {t('screens:content.theme')}
+          </Dialog.Title>
           <Dialog.Content>
             <RadioButton.Group
               onValueChange={value => {

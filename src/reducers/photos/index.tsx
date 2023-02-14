@@ -14,12 +14,6 @@ const photoSlice = createSlice({
     addPhotosEmpty: (state, action) => {
       state.listPhotos = [...state.listPhotos, action.payload];
     },
-    addPhotosFavorites: (state, action) => {
-      state.listPhotosFavorites = [
-        ...state.listPhotosFavorites,
-        action.payload,
-      ];
-    },
     editPhotosFavorites: (state, action) => {
       state.listPhotos = handleEditNewSite(action.payload, state.listPhotos);
     },
@@ -40,9 +34,5 @@ const handleEditNewSite = (item, photos) => {
 
 export const reducerPhotos = photoSlice.reducer;
 
-export const {
-  addPhotos,
-  addPhotosEmpty,
-  addPhotosFavorites,
-  editPhotosFavorites,
-} = photoSlice.actions;
+export const { addPhotos, addPhotosEmpty, editPhotosFavorites } =
+  photoSlice.actions;

@@ -28,7 +28,7 @@ export function Home() {
                 key: file.key,
                 name: file.name,
                 url: file.url,
-                favorite: listPhotos[index]?.favorite,
+                favorite: listPhotos[index]?.favorite ? true : false,
                 date: new Date(),
               })),
             ),

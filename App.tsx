@@ -11,7 +11,8 @@ import {
 import { ThemeProvider } from 'styled-components/native';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { useSelector } from 'react-redux';
-
+import { I18nextProvider } from 'react-i18next';
+import i18n from './src/i18n';
 import { THEME } from './src/theme';
 import { persistor } from './src/store';
 import { createTheme } from '@utils/Themes';
@@ -47,7 +48,9 @@ export default function App() {
               translucent
             />
             {loadedFonts ? (
-              <Routes />
+              <I18nextProvider i18n={i18n}>
+                <Routes i18n={i18n} />
+              </I18nextProvider>
             ) : (
               <ActivityIndicator color={THEME.COLORS.WHITE} />
             )}

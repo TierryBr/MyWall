@@ -1,0 +1,24 @@
+{
+  "download": "Baixar",
+  "apply": "Aplicar",
+  "close": "Fechar",
+  "permission-denied": "Permissão negada",
+  "success-download": "Download concluído!",
+  "error-download": "Erro ao realizar download",
+  "set-wallpaper": "Definir papel de parede",
+  "home-screen": "Tela inicial",
+  "lock-screen": "Tela de bloqueio",
+  "home-lock-screen": "Tela inicial e Tela de bloqueio",
+
+  "personalization": "Personalização",
+  "theme": "Tema",
+  "light": "Claro",
+  "dark": "Escuro",
+  "language": "Idioma",
+  "about": "Sobre",
+  "version": "Versão",
+  "rate-app": "Classifique o aplicativo",
+  "rate-app-desc": "Se gostou do MyWall avalie ele na PlayStore",
+  "terms-of-use": "Termos de uso",
+  "privacy-policy": "Política de privacidade"
+}

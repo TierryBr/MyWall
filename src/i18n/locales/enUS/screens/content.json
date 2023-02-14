@@ -1,0 +1,24 @@
+{
+  "download": "Download",
+  "apply": "Apply",
+  "close": "Close",
+  "permission-denied": "Permission denied",
+  "success-download": "Download completed!",
+  "error-download": "Error when downloading",
+  "set-wallpaper": "Set wallpaper",
+  "home-screen": "Home screen",
+  "lock-screen": "Lock screen",
+  "home-lock-screen": "Home screen and Lock screen",
+
+  "personalization": "Personalization",
+  "theme": "Theme",
+  "light": "Light",
+  "dark": "Dark",
+  "language": "Language",
+  "about": "About",
+  "version": "Version",
+  "rate-app": "Rate the app",
+  "rate-app-desc": "If you liked MyWall, rate it on the PlayStore",
+  "terms-of-use": "Terms of use",
+  "privacy-policy": "Privacy Policy"
+}

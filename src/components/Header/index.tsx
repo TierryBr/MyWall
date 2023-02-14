@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { IconButton } from 'react-native-paper';
 import { PhotoParams } from '@types/navigation';
-import { addPhotosFavorites, editPhotosFavorites } from '@reducers/photos';
+import { editPhotosFavorites } from '@reducers/photos';
 
 import * as S from './styles';
 
