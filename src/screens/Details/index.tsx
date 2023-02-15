@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
+import FastImage from 'react-native-fast-image';
 
 import { useTheme } from 'styled-components/native';
 import { Button, Dialog, Portal, List, Snackbar } from 'react-native-paper';
@@ -123,6 +124,7 @@ export function Details() {
         <S.Image
           source={{
             uri: `${photo.url}`,
+            priority: FastImage.priority.high,
           }}
         />
         <Header photo={photo} />

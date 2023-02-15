@@ -1,5 +1,7 @@
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import FastImage from 'react-native-fast-image';
+
 
 interface Props {
   empty?: boolean;
@@ -23,7 +25,7 @@ export const InfoPhoto = styled(LinearGradient)`
   padding: 15px;
 `;
 
-export const Image = styled.ImageBackground`
+export const Image = styled(FastImage)`
   width: 100%;
   height: 150px;
   border-radius: 8px;

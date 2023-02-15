@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useTheme } from 'styled-components/native';
+import FastImage from 'react-native-fast-image';
 import convertDateToString from '@utils';
 
 import * as S from './styles';
@@ -34,6 +35,7 @@ export function CardImageFavorites({ photo }) {
       <S.Image
         source={{
           uri: `${photo.url}`,
+          priority: FastImage.priority.high,
         }}
       >
         <S.InfoPhoto colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.9)']}>

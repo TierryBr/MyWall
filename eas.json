@@ -1,0 +1,44 @@
+{
+  "cli": {
+    "version": ">= 3.6.0"
+  },
+  "build": {
+    "development": {
+      "distribution": "internal",
+      "ios": {
+        "buildConfiguration": "Debug",
+        "resourceClass": "m1-medium"
+      }
+    },
+    "homolog": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleRelease"
+      },
+      "ios": {
+        "buildConfiguration": "Debug",
+        "resourceClass": "m1-medium"
+      },
+      "env": {
+        "API_URL": "https://upload-image-backend-zeta.vercel.app/posts"
+      }
+    },
+    "production": {
+      "android": {
+        "buildType": "app-bundle",
+        "gradleCommand": ":app:bundleRelease"
+      },
+      "ios": {
+        "buildConfiguration": "Debug",
+        "resourceClass": "m1-medium"
+      },
+      "env": {
+        "API_URL": "https://upload-image-backend-zeta.vercel.app/posts"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

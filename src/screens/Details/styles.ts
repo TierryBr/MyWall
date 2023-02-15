@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
-import { IconButton, Button } from 'react-native-paper';
-
+import { Button } from 'react-native-paper';
+import FastImage from 'react-native-fast-image';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -21,7 +21,7 @@ export const Header = styled.View`
   margin-top: 30px;
 `;
 
-export const Image = styled.Image`
+export const Image = styled(FastImage)`
   width: 100%;
   height: 100%;
   position: absolute;

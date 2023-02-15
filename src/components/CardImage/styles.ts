@@ -13,8 +13,3 @@ export const CardImage = styled.TouchableOpacity<Props>`
   align-items: center;
   overflow: hidden;
 `;
-
-export const Image = styled.Image`
-  width: 160px;
-  height: 260px;
-`;

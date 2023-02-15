@@ -11,6 +11,11 @@
       "image": "./assets/splash-screen.png",
       "backgroundColor": "#404040",
       "resizeMode": "cover"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4dc86630-93ff-4985-b110-e1ad0ebcf5aa"
+      }
     }
   }
 }

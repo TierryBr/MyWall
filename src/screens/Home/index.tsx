@@ -82,6 +82,7 @@ export function Home() {
           ListHeaderComponent={<View />}
           ListFooterComponentStyle={{ margin: 50 }}
           ListHeaderComponentStyle={{ marginTop: 50 }}
+          windowSize={40}
         />
       ) : (
         <S.LoadingCenter>
