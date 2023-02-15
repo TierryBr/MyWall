@@ -6,6 +6,11 @@
     "jsEngine": "hermes",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "splash": {
+      "image": "./assets/splash-screen.png",
+      "backgroundColor": "#404040",
+      "resizeMode": "cover"
+    }
   }
 }
