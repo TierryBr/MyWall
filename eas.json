@@ -19,9 +19,6 @@
       "ios": {
         "buildConfiguration": "Debug",
         "resourceClass": "m1-medium"
-      },
-      "env": {
-        "API_URL": "https://upload-image-backend-zeta.vercel.app/posts"
       }
     },
     "production": {
@@ -32,9 +29,6 @@
       "ios": {
         "buildConfiguration": "Debug",
         "resourceClass": "m1-medium"
-      },
-      "env": {
-        "API_URL": "https://upload-image-backend-zeta.vercel.app/posts"
       }
     }
   },
