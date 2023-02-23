@@ -6,6 +6,7 @@ import { CardImage } from '@components/CardImage';
 import { addPhotos, addPhotosEmpty } from '@reducers/photos';
 
 import * as S from './styles';
+import { showService } from '../../services/showPhotos';
 
 export function Home() {
   const [request, setRequest] = useState(false);
@@ -18,32 +19,22 @@ export function Home() {
 
   useEffect(() => {
     const getImages = async () => {
-      await fetch(process.env.API_URL)
-        .then(async resp => {
-          const jsondata = await resp.json();
-          dispatch(
-            addPhotos(
-              jsondata.map((file, index) => ({
-                createdAt: file.CreatedAt,
-                key: file.key,
-                name: file.name,
-                url: file.url,
-                favorite: listPhotos[index]?.favorite ? true : false,
-                date: new Date(),
-              })),
-            ),
-          );
-          setRequest(true);
-        })
-        .catch(e => {
-          console.log('error', e);
-        })
-        .finally(() => {
-          setRequest(true);
-          setIsFetching(false);
-        });
+      const arrayPhotos = await showService.getPhotos();
+      await dispatch(
+        addPhotos(
+          arrayPhotos?.map((file, index) => ({
+            createdAt: file.CreatedAt,
+            key: file.key,
+            name: file.name,
+            url: file.url,
+            favorite: listPhotos[index]?.favorite ? true : false,
+            date: new Date(),
+          })),
+        ),
+      );
+      setRequest(true);
+      setIsFetching(false);
     };
-
     getImages();
   }, [isFetching]);
 
