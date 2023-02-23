@@ -8,8 +8,6 @@ describe('showPhotos', () => {
 
       const groupedPhotos = await showService.getPhotos();
 
-      console.log('photos', groupedPhotos[1]);
-
       expect(spyFn).toBeCalledTimes(1);
     });
   });
