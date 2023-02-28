@@ -52,6 +52,19 @@ export function Settings() {
     }
   }, []);
 
+  const handlePressRateApp = useCallback(async () => {
+    const supported = await Linking.canOpenURL(
+      'https://play.google.com/store/apps/details?id=com.mywall',
+    );
+    if (supported) {
+      await Linking.openURL(
+        'https://play.google.com/store/apps/details?id=com.mywall',
+      );
+    } else {
+      console.log('Dont know how to open this URL');
+    }
+  }, []);
+
   return (
     <S.Container>
       <List.Section style={{ paddingHorizontal: 10, marginTop: 40 }}>
@@ -118,7 +131,7 @@ export function Settings() {
           titleStyle={{ color: theme.COLORS.DARK }}
           descriptionStyle={{ color: theme.COLORS.GRAY500 }}
           rippleColor={theme.COLORS.OVERLAY}
-          onPress={() => {}}
+          onPress={handlePressRateApp}
           left={() => (
             <Icon name="star-outline" color={theme.COLORS.DARK} size={20} />
           )}
